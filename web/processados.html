@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="css/template.css" />
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="stylesheet" type="text/css" href="css/css.css" />
+        <link rel="stylesheet" type="text/css" href="css/jsgrid/jsgrid.css" />
+        <link rel="stylesheet" type="text/css" href="css/jsgrid/theme.css" />
+
+
+        <script src="js/controllers/uploadController.js"></script>
+        <script src="js/external/jquery-1.8.3.js"></script>
+        <script src="js/jsgrid.core.js"></script>
+        <script src="js/jsgrid.load-indicator.js"></script>
+        <script src="js/jsgrid.load-strategies.js"></script>
+        <script src="js/jsgrid.sort-strategies.js"></script>
+        <script src="js/jsgrid.field.js"></script>
+        <script src="js/fields/jsgrid.field.text.js"></script>
+        <script src="js/fields/jsgrid.field.number.js"></script>
+        <script src="js/fields/jsgrid.field.select.js"></script>
+        <script src="js/fields/jsgrid.field.checkbox.js"></script>
+        <script src="js/fields/jsgrid.field.control.js"></script>
+
+        <title>Processados</title>
+
+
+    </head>
+    <body class="center">
+        <div class="w3-content" style="max-width:1100px">
+            <header class="w3-panel w3-center w3-opacity" style="padding:15px 16px">
+                <div class="w3-padding-32">
+                    <div class="w3-bar w3-border">
+                        <a href="menuGeral.html" class="w3-bar-item w3-button w3-light-grey">Menu Geral</a>
+                        <a href="upload.html" class="w3-bar-item w3-button w3-light-grey">Uploads</a>
+                        <a href="flip/samples/flip/lista.html" class="w3-bar-item w3-button">Lista</a>
+                        <a href="processados.html" class="w3-bar-item w3-button">Processados</a>
+                        <a href="buscaUsuarios.html" class="w3-bar-item w3-button">Usuarios</a>
+                        <a href="login.html" class="w3-bar-item w3-button">Sair</a>
+                    </div>
+                </div>
+            </header> 
+        </div>
+        <input type='file' id='file' name='file'  style="display:none"/>
+        <div id="jsGrid">
+            <script>
+                $(function () {
+                    $("#jsGrid").jsGrid({
+                        height: "70%",
+                        width: "100%",
+                        filtering: true,
+                        editing: true,
+                        inserting: true,
+                        sorting: true,
+                        paging: true,
+                        autoload: true,
+                        pageSize: 15,
+                        pageButtonCount: 5,
+                        deleteConfirm: "Confirma a exclusão do registro?",
+                        controller: uploadController,
+                        fields: [
+                            {name: "Autor", type: "text", width: 100},
+                            {name: "Instrumento", type: "text", width: 100},
+                            {name: "Livro", type: "text", width: 100},
+                            {name: "Usuario", type: "text", width: 90},
+                            {name: "Download", with : 100,
+                                itemTemplate: function (value, item) {
+                                    var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
+                                    var $customButton = $("<img src='download.png'/>")
+                                            .width(30)
+                                            .click(function (e) {
+                                                jQuery('#file').trigger('click');
+                                            });
+                                    return $result.add($customButton);
+                                }},
+                            {type: "control"}
+                        ]
+                    });
+
+                });
+            </script><br>
+        </div>      
+    </body>
+</html>
+
+
