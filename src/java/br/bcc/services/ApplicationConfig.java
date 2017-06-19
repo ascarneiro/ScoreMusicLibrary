@@ -23,11 +23,10 @@ public class ApplicationConfig extends Application {
      * out calling this method in getClasses().
      */
     private void addRestResourceClasses(Set<Class<?>> resources) {
-        //resources.add(br.bcc.services.FilmesResource.class);
-        //resources.add(br.bcc.services.PesquisasResource.class);
-        resources.add(br.bcc.services.FilmesResource.class);
-        resources.add(br.bcc.services.PesquisasResource.class);
-        resources.add(br.bcc.services.UsuariosResource.class);
+        resources.add(br.bcc.services.DocumentoRestService.class);
+        resources.add(br.bcc.services.InstrumentoRestService.class);
+        resources.add(br.bcc.services.ProcessadosRestService.class);
+        resources.add(br.bcc.services.UsuariosRestService.class);
     }
 
 }

@@ -1,7 +1,7 @@
 package br.bcc.controler.servlets;
 
 import br.bcc.controler.classes.Usuarios;
-import br.bcc.controler.intermediarias.UsuarioController;
+import br.bcc.controler.intermediarias.UsuarioDAO;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -33,10 +33,10 @@ public class NovoUsuarioServlet extends HttpServlet
         String senha1 = request.getParameter("senha1").trim();
         String senha2 = request.getParameter("senha2").trim();
 
-        int STATUS = UsuarioController.novoUsuario(usuario, email1, email2, senha1, senha2);
-        if (UsuarioController.EMAIL_INCOERENTE == STATUS
-                || UsuarioController.SENHA_INCOERENTE == STATUS
-                || UsuarioController.ERRO_DESCONHECIDO == STATUS)
+        int STATUS = UsuarioDAO.novoUsuario(usuario, email1, email2, senha1, senha2);
+        if (UsuarioDAO.EMAIL_INCOERENTE == STATUS
+                || UsuarioDAO.SENHA_INCOERENTE == STATUS
+                || UsuarioDAO.ERRO_DESCONHECIDO == STATUS)
         {
             response.setStatus(response.SC_UNAUTHORIZED);
 

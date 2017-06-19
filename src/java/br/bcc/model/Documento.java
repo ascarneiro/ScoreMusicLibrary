@@ -9,57 +9,69 @@ package br.bcc.model;
  *
  * @author Windows
  */
-public class Documento {
+public class Documento
+{
 
     private String id;
     private String autor;
     private String instrumento;
-    private String dsLivro;
+    private String livro;
     private String dsCaminhoArquivo;
 
-    public Documento(String id) {
+    public Documento(String id)
+    {
         this.id = id;
     }
 
-    public String getId() {
+    public String getId()
+    {
         return id;
     }
 
-    public String getAutor() {
+    public String getAutor()
+    {
         return autor;
     }
 
-    public void setAutor(String autor) {
+    public void setLivro(String livro)
+    {
+        this.livro = livro;
+    }
+
+    public void setAutor(String autor)
+    {
         this.autor = autor;
     }
 
-    public String getInstrumento() {
+    public String getInstrumento()
+    {
         return instrumento;
     }
 
-    public void setInstrumento(String instrumento) {
+    public void setInstrumento(String instrumento)
+    {
         this.instrumento = instrumento;
     }
 
-    public String getDsLivro() {
-        return dsLivro;
+    public String getLivro()
+    {
+        return livro;
     }
 
-    public void setDsLivro(String dsLivro) {
-        this.dsLivro = dsLivro;
-    }
-
-    public String getDsCaminhoArquivo() {
+    public String getDsCaminhoArquivo()
+    {
         return dsCaminhoArquivo;
     }
 
-    public void setDsCaminhoArquivo(String dsCaminhoArquivo) {
+    public void setDsCaminhoArquivo(String dsCaminhoArquivo)
+    {
         this.dsCaminhoArquivo = dsCaminhoArquivo;
     }
 
     @Override
-    public int hashCode() {
-        return (autor + instrumento + dsLivro).hashCode();
+    public int hashCode()
+    {
+        return (autor + instrumento + livro).hashCode();
     }
 
 }

@@ -7,7 +7,7 @@ package br.bcc.controler.servlets;
  */
 import br.bcc.controler.classes.TheadProcessar;
 import br.bcc.controler.classes.Usuarios;
-import br.bcc.controler.intermediarias.UsuarioController;
+import br.bcc.controler.intermediarias.UsuarioDAO;
 import java.io.IOException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
@@ -34,7 +34,7 @@ public class LoginServlet extends HttpServlet
 
         String email = request.getParameter("email").trim();
         String senha = request.getParameter("senha").trim();
-        if (UsuarioController.login(email, senha))
+        if (UsuarioDAO.login(email, senha))
         {
             response.setStatus(response.SC_ACCEPTED);
         } else

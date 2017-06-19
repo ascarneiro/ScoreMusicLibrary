@@ -1,0 +1,34 @@
+<div ng-controller="putServiceCtrl" class="centerUpload">
+    <form novalidate="novalidate" class="form-horizontal">
+        <table>
+            <tr>
+                <td>Obra:</td>
+                <td><input type="text" ng-model="obra"></td>
+                <td colspan="3">
+                    <div ng-controller="InstrumentosControl">
+                        <select ng-model="instrumento" id="instrumento"  ng-options="instrumento as instrumento.dsInstrumento for instrumento in instrumentos"></select>
+                    </div>
+            </tr>
+            <tr>
+                <td>Autor:</td>
+                <td><input type="text" ng-model="autor"></td>
+            </tr>
+            <tr>
+                <td>Livro:</td>
+                <td><input type="text" ng-model="livro"></td>
+            </tr>
+
+            <tr >
+                <td></td>
+                <td><div style="align-content: center">
+                        <a ng-click="putdata(obra, autor, livro)" class="btn btn-small  btn-primary">Novo</a>
+                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Salvar</a>
+                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Desfazer</a>
+                    </div>
+                </td>
+                <td></td>
+
+            </tr>
+        </table>
+    </form>
+</div>

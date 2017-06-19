@@ -1,0 +1,37 @@
+<div ng-controller="putServiceCtrl" class="centerUpload">
+    <form novalidate="novalidate" class="form-horizontal">
+        <table>
+            <tr>
+                <td>Usuario:</td>
+                <td><input type="text" ng-model="nmUsuario"></td>
+            </tr>
+            <tr>
+                <td>Email:</td>
+                <td><input type="text" ng-model="dsEmail"></td>
+            </tr>
+            <tr>
+                <td>Administrador:</td>
+                <td><div style="align-content: center">
+                        <input type="radio" checked="S" value="N" ng-model="ieAdministrador">Nao &nbsp;&nbsp;&nbsp;
+                        <input type="radio" value="S" ng-model="ieAdministrador">Sim
+                    </div>
+                </td>
+
+            </tr>
+            <tr >
+                <td></td>
+                <td><div style="align-content: center">
+                        <a ng-click="putdata(nmUsuario, dsEmail, ieAdministrador)" class="btn btn-small  btn-primary">Novo</a>
+                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Salvar</a>
+                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Desfazer</a>
+                    </div>
+                </td>
+                <td></td>
+
+            </tr>
+
+        </table>
+
+
+    </form>
+</div>

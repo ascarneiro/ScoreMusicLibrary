@@ -37,7 +37,7 @@ public class UploadServlet extends HttpServlet {
         if (!Uploads.getInstance().exists(id)) {
             Documento doc = new Documento(id);
             doc.setAutor(autor);
-            doc.setDsLivro(livro);
+            doc.setLivro(livro);
             doc.setInstrumento(instrumento);
             doc.setDsCaminhoArquivo(caminho);
             Uploads.getInstance().addUpload(doc.hashCode() + "", new Upload(doc));

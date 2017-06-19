@@ -8,14 +8,14 @@
 $(document).ready(function () {
     $('#signin').click(function () {
         $.ajax({
-            url: 'LoginServlet',
+            url: '../LoginServlet',
             method: 'POST',
             data: {
                 email: $('#email').val(),
                 senha: $('#senha').val()
             },
             success: function (responseText) {
-                window.location.href = "menuGeral.html";
+                window.location.href = "../menu/principal.html";
             },
          
         });
@@ -23,7 +23,7 @@ $(document).ready(function () {
 
     $('#cadastrar').click(function () {
         $.ajax({
-            url: 'NovoUsuarioServlet',
+            url: '../NovoUsuarioServlet',
             method: 'POST',
             data: {
                 usuario: $('#usuario').val(),
@@ -33,7 +33,7 @@ $(document).ready(function () {
                 email2: $('#email2').val(),
             },
             success: function (responseText) {
-               window.location.href = "login.html"; 
+               window.location.href = "../login/login.html"; 
             },
         
         });

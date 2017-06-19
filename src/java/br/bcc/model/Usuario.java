@@ -12,10 +12,15 @@ package br.bcc.model;
 public class Usuario
 {
 
+    private String id;
     private String nmUsuario;
     private String dsEmail;
     private String dsSenha;
     private String ieAdministrador;
+
+    public Usuario()
+    {
+    }
 
     public Usuario(String nmUsuario, String dsEmail, String ieAdministrador)
     {
@@ -23,7 +28,7 @@ public class Usuario
         this.dsEmail = dsEmail;
         this.ieAdministrador = ieAdministrador;
     }
-    
+
     public Usuario(String nmUsuario, String dsEmail, String dsSenha, String ieAdministrador)
     {
         this.nmUsuario = nmUsuario;
@@ -38,6 +43,16 @@ public class Usuario
         this.dsSenha = dsSenha;
     }
 
+    public void setId(String id)
+    {
+        this.id = id;
+    }
+
+    public String getId()
+    {
+        return id;
+    }
+
     public String getDsEmail()
     {
         return dsEmail;
@@ -48,9 +63,19 @@ public class Usuario
         return dsSenha;
     }
 
+    public void setNmUsuario(String nmUsuario)
+    {
+        this.nmUsuario = nmUsuario;
+    }
+
     public String getNmUsuario()
     {
         return nmUsuario;
+    }
+
+    public void setDsEmail(String dsEmail)
+    {
+        this.dsEmail = dsEmail;
     }
 
     public String getIeAdministrador()

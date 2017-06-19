@@ -1,7 +1,32 @@
-<?xml version="1.0" encoding="UTF-8"?><project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/1"/>
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/E:/FURB/Stats/web/cadastroImagem.html</file>
+            <file>file:/E:/FURB/Stats/web/cadastros/cadastroDocumentos/css/css.css</file>
+            <file>file:/E:/FURB/Stats/web/cadastros/cadastroUsuarios/index.html</file>
+            <file>file:/E:/FURB/Stats/web/consultaDocumentoProcesso.html</file>
+            <file>file:/E:/FURB/Stats/web/consultaUsuario.html</file>
+            <file>file:/E:/FURB/Stats/web/flip/samples/flip/lista.html</file>
+            <file>file:/E:/FURB/Stats/web/js/controllers/uploadController.js</file>
+            <file>file:/E:/FURB/Stats/web/cadastros/cadastroDocumentos/index.html</file>
+            <file>file:/E:/FURB/Stats/web/css/css.css</file>
+            <file>file:/E:/FURB/Stats/web/cadastros/cadastroDocumentos/js/js.js</file>
+            <file>file:/E:/FURB/Stats/web/login.html</file>
+            <file>file:/E:/FURB/Stats/web/js/jsgrid.core.js</file>
+            <file>file:/E:/FURB/Stats/web/cadastros/cadastroDocumentos/edit-modal.html</file>
+            <file>file:/E:/FURB/Stats/web/cadastros/cadastroDocumentos/edit-button.html</file>
+            <file>file:/E:/FURB/Stats/web/login2.html</file>
+            <file>file:/E:/FURB/Stats/web/principal.html</file>
+            <file>file:/E:/FURB/Stats/web/menu.htm</file>
+            <file>file:/E:/FURB/Stats/web/js/controllers/processadosController.js</file>
+            <file>file:/E:/FURB/Stats/web/css/cadastros.css</file>
+            <file>file:/E:/FURB/Stats/web/js/login.js</file>
+            <file>file:/E:/FURB/Stats/web/js/jsgrid.field.js</file>
+            <file>file:/E:/FURB/Stats/web/js/jsgrid.sort-strategies.js</file>
+            <file>file:/E:/FURB/Stats/web/js/controllers/buscaUsuariosController.js</file>
+        </group>
     </open-files>
 </project-private>
