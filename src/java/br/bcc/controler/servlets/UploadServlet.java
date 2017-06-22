@@ -39,7 +39,7 @@ public class UploadServlet extends HttpServlet {
             doc.setAutor(autor);
             doc.setLivro(livro);
             doc.setInstrumento(instrumento);
-            doc.setDsCaminhoArquivo(caminho);
+            doc.setDsCaminhoArquivoPDF(caminho);
             Uploads.getInstance().addUpload(doc.hashCode() + "", new Upload(doc));
             FilaProcessar.getFila().add(doc);
         }

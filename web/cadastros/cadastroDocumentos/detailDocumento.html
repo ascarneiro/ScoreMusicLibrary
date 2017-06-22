@@ -1,34 +1,37 @@
-<div ng-controller="putServiceCtrl" class="centerUpload">
-    <form novalidate="novalidate" class="form-horizontal">
-        <table>
-            <tr>
-                <td>Obra:</td>
-                <td><input type="text" ng-model="obra"></td>
-                <td colspan="3">
-                    <div ng-controller="InstrumentosControl">
-                        <select ng-model="instrumento" id="instrumento"  ng-options="instrumento as instrumento.dsInstrumento for instrumento in instrumentos"></select>
-                    </div>
-            </tr>
-            <tr>
-                <td>Autor:</td>
-                <td><input type="text" ng-model="autor"></td>
-            </tr>
-            <tr>
-                <td>Livro:</td>
-                <td><input type="text" ng-model="livro"></td>
-            </tr>
+<div ng-controller="putServiceCtrl" class="cadastro">
+    <table>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obra:</td>
+            <td><input type="text" ng-model="obra" style="margin-bottom: 1%; width: 250%"></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Autor:</td>
+            <td><input type="text" ng-model="autor" style="margin-bottom: 1%; width: 250%"></td>
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Livro:</td>
+            <td><input type="text" ng-model="livro" style="margin-bottom: 1%; width: 250%"></td>
+        </tr>
+        <tr>
+            <td>Instrumento: </td>
+            <td>
+                <div ng-controller="InstrumentosControl">
+                    <select style="margin-bottom: 1%; width: 130%" ng-model="instrumento" id="instrumento"  ng-options="instrumento as instrumento.dsInstrumento for instrumento in instrumentos"></select>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>Imagem: </td>
+            <td>
+                <button style="margin-bottom: 1%; width: 130%" type="button" class="" ng-click="">
+                    <i class="btn btn-small  button btn-primary">...</i>
+                </button>
+            </td>
+        </tr>
+    </table>
+    <div style="align-items: baseline">
+        <button style="background: black" ng-click="create(obra, autor, livro)" class="btn btn-small  button btn-primary">Salvar</button>
+    </div>
 
-            <tr >
-                <td></td>
-                <td><div style="align-content: center">
-                        <a ng-click="putdata(obra, autor, livro)" class="btn btn-small  btn-primary">Novo</a>
-                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Salvar</a>
-                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Desfazer</a>
-                    </div>
-                </td>
-                <td></td>
 
-            </tr>
-        </table>
-    </form>
 </div>

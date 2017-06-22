@@ -28,16 +28,17 @@
         <link rel="stylesheet" href="../../css/css.css" />
         <link rel="stylesheet" type="text/css" href="../../css/template.css" />
         <script src="js/js.js"></script>
-        <script src="js/controller.js"></script>
+        <!--<script src="../../js/angular-ui-bootstrap-modal.js.js"></script>-->
     </head>
 
     <body>
-
-        <div class="center"  ng-controller="MainCtrl as vm">
+        <div class="centerUpload"  ng-controller="MainCtrl as vm">
 
             <div ng-include src="'../../menu/menu.htm'"></div>
             <div ng-include src="'detailInstrumento.html'"></div>
-            <div class="grid" ui-grid="vm.gridOptions" ui-grid-edit></div>
+            <div class="cadastro">
+                <div class="grid" ui-grid="vm.gridOptions" ui-grid-edit></div>
+            </div>
         </div>
     </body>
 

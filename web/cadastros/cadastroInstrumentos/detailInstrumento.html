@@ -1,17 +1,17 @@
-<div ng-controller="putServiceCtrl" class="centerUpload">
+<div ng-controller="putServiceCtrl" class="cadastro">
     <form novalidate="novalidate" class="form-horizontal">
-        <table >
+        <table>
 
             <tr>
                 <td>Instrumento:</td>
-                <td><input type="text" ng-model="dsInstrumento"></td>
+                <td><input style="margin-bottom: 1%; width: 250%" type="text" ng-model="dsInstrumento"></td>
 
             </tr>
 
             <tr>
                 <td>Familia:</td>
                 <td>
-                    <select style="width: 210px">
+                    <select style="margin-bottom: 1%; width: 100%" ng-model="dsFamilia">
                         <option value="indefinido">Indefinida
                         <option value="Cordas">Cordas
                         <option value="Metais">Metais
@@ -19,13 +19,11 @@
                         <option value="Palhetas">Palhetas
                     </select></td>
             </tr>
+
+            <tr><td><div style="height: 8px"></div></td></tr>
             <tr>
-
-
-                <td colspan="2"><div style="align-content: center">
-                        <a ng-click="putdata(nmUsuario, dsEmail, ieAdministrador)" class="btn btn-small  btn-primary">Novo</a>
-                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Salvar</a>
-                        <a ng-click="cancel()" class="btn btn-small  btn-primary">Desfazer</a>
+               <td colspan="2"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                       <button style="background: black" ng-click="create(dsInstrumento, dsFamilia)" class="btn btn-small  button btn-primary">Salvar</button >
                     </div>
                 </td>
             </tr>

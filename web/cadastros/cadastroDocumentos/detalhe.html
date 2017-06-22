@@ -1,0 +1,45 @@
+<div ng-app="modal.editing.documento" ng-controller="putServiceCtrl" >
+    <div modal="showModal" close="cancel()" class="centerUpload">
+        <div class="modal-header">
+            <h4>Editar Documento</h4>
+        </div>
+        <div ng-controller="putServiceCtrl" class="cadastro">
+            <table>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Obra:</td>
+                    <td><input type="text" ng-model="obra" style="margin-bottom: 1%; width: 250%"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Autor:</td>
+                    <td><input type="text" ng-model="autor" style="margin-bottom: 1%; width: 250%"></td>
+                </tr>
+                <tr>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Livro:</td>
+                    <td><input type="text" ng-model="livro" style="margin-bottom: 1%; width: 250%"></td>
+                </tr>
+                <tr>
+                    <td>Instrumento: </td>
+                    <td>
+                        <div ng-controller="InstrumentosControl">
+                            <select style="margin-bottom: 1%; width: 130%" ng-model="instrumento" id="instrumento"  ng-options="instrumento as instrumento.dsInstrumento for instrumento in instrumentos"></select>
+                        </div>
+                    </td>
+                </tr>
+                <tr><td>
+
+                        <iframe id="invisible" style="display:none; border:1px solid #666CCC" title="PDF" src="" frameborder="1" scrolling="auto" height="1100" width="850" ></iframe>
+                    </td></tr>
+            </table>
+            <div style="align-items: baseline">
+                <button style="background: black" ng-click="" class="btn btn-small  button btn-primary">Salvar</button>
+            </div>
+
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-small  button btn-primary" ng-click="ok()">Salvar</button>
+            <button class="btn btn-small  button btn-primary" ng-click="cancel()">Editar</button>
+        </div>
+    </div>
+
+</div>

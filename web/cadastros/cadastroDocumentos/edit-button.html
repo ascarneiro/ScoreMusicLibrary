@@ -1,5 +1,11 @@
-<div class="ui-grid-cell-contents">
-    <button type="button" class="btn btn-xs btn-primary" ng-click="grid.appScope.vm.editRow(grid, row)">
-        <i class="fa fa-edit"></i>
-    </button>
+<div ng-controller="putServiceCtrl" ng-app="modal.editing.documento">
+    <div class="ui-grid-cell-contents">
+        <button type="button" class="" ng-click="open()"    >
+            <i class="fa fa-edit"></i>
+        </button>
+        <button type="button" class="" ng-click="remove(row)">
+            <i class="fa fa-times"></i>
+        </button>
+    </div>
 </div>
+

@@ -29,12 +29,15 @@ public class ProcessadosRestService
         ArrayList processados = new ArrayList();
         try
         {
-            DAO dao = DaoFactory.getUser();
+                DAO dao = DaoFactory.getUser();
             ArrayList<ValueByName> linhas = dao.execSQL("select 	a.nr_sequencia,\n"
-                    + "		a.ds_autor,\n"
-                    + "		a.ds_instrumento,\n"
-                    + "		a.ds_livro, b.nm_usuario, b.dt_atualizacao, \n"
-                    + "		c.ds_caminho from midia c, documento_processo b, documento a where a.nr_sequencia = b.nr_seq_documento and  b.nr_seq_midia = c.nr_sequencia");
+                    + "		b.ds_autor,\n"
+                    + "		b.ds_instrumento,\n"
+                    + "		b.ds_livro, a.nm_usuario, a.dt_atualizacao, "
+                    + "(select max(x.DS_CAMINHO) from midia x where x.nr_sequencia = a.nr_seq_midia_PDF) DS_CAMINHO_ARQUIVO_PDF, \n"
+                    + "(select max(x.DS_CAMINHO) from midia x where x.nr_sequencia = a.nr_seq_midia_MIDI) DS_CAMINHO_ARQUIVO_MIDI \n"
+                    + "		from documento_processo a, documento b "
+                    + " where   a.nr_seq_documento = b.nr_sequencia");
             //
 
             for (ValueByName linha : linhas)
@@ -42,7 +45,8 @@ public class ProcessadosRestService
 
                 DocumentoProcesso doc = new DocumentoProcesso(linha.getAsString("NR_SEQUENCIA"));
                 doc.setAutor(linha.getAsString("DS_AUTOR"));
-                doc.setDsCaminhoArquivo(linha.getAsString("DS_CAMINHO_ARQUIVO"));
+                doc.setDsCaminhoArquivoPDF(linha.getAsString("DS_CAMINHO_ARQUIVO_PDF"));
+                doc.setDsCaminhoArquivoMIDI(linha.getAsString("DS_CAMINHO_ARQUIVO_MIDI"));
                 doc.setLivro(linha.getAsString("DS_LIVRO"));
                 doc.setInstrumento(linha.getAsString("DS_INSTRUMENTO"));
                 doc.setDtAtualizacao(linha.getAsString("DS_ATUALIZACAO"));

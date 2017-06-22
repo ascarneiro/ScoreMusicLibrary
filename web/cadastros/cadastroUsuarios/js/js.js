@@ -1,12 +1,17 @@
 // Code goes here
 
-var URL_NOVO = '../../webresources/usuarios/create/';
 var URL_TODOS = '../../webresources/usuarios/';
-app = angular.module('modal.editing.usuario', ['ui.grid', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm'])
+var URL_CREATE = '../../webresources/usuarios/create/';
+var URL_UPDATE = '../../webresources/usuarios/update/';
+var URL_DELETE = '../../webresources/usuarios/delete/';
+
+
+app = angular.module('modal.editing.usuario', ['ui.grid', 'ui.grid.edit', 'ui.bootstrap', 'schemaForm', "ui.bootstrap.modal"])
 
         .constant('PersonSchema', {
             type: 'object',
             properties: {
+                nmUsuario: {type: 'string', title: 'Usuario'},
                 nmUsuario: {type: 'string', title: 'Usuario'},
                 dsEmail: {type: 'string', title: 'Email'},
                 ieAdministrador: {type: 'string', title: 'Administrador'},
@@ -19,34 +24,114 @@ app = angular.module('modal.editing.usuario', ['ui.grid', 'ui.grid.edit', 'ui.bo
         ;
 
 
-app.controller('putServiceCtrl', function ($scope, $http) {
+app.controller('putServiceCtrl', function($scope, $http) {
     $scope.nmObra = null;
     $scope.nmAutor = null;
     $scope.ieInstrumento = null;
-    $scope.putdata = function (nmUsuario, dsEmail, ieAdministrador) {
+
+    $scope.create = function(nmUsuario, dsEmail, ieAdministrador) {
 
 
         var postObject = new Object();
         postObject.nmUsuario = nmUsuario;
         postObject.dsEmail = dsEmail;
         postObject.ieAdministrador = ieAdministrador
-        
+
 
         $http({
-            url: URL_NOVO + JSON.stringify(postObject),
+            url: URL_CREATE + JSON.stringify(postObject),
             dataType: 'json',
             method: 'PUT',
             headers: {
                 "Content-Type": "application/json",
                 'Accept': 'application/json'
             }
-        }).success(function (response) {
+        }).success(function(response) {
             $scope.msg = "Documento inserido com sucesso";
             $scope.response = response;
-        }).error(function (error) {
+            location.reload();
+        }).error(function(error) {
             $scope.msg = "Service not Exists";
             $scope.error = error;
         });
+    };
+
+    $scope.update = function(id, nmUsuario, dsEmail, ieAdministrador) {
+
+
+        var postObject = new Object();
+        postObject.id = id;
+        postObject.nmUsuario = nmUsuario;
+        postObject.dsEmail = dsEmail;
+        postObject.ieAdministrador = ieAdministrador
+
+
+        $http({
+            url: URL_UPDATE + JSON.stringify(postObject),
+            dataType: 'json',
+            method: 'PUT',
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+            }
+        }).success(function(response) {
+            $scope.msg = "Documento inserido com sucesso";
+            $scope.response = response;
+            location.reload();
+        }).error(function(error) {
+            $scope.msg = "Service not Exists";
+            $scope.error = error;
+        });
+    };
+
+    $scope.delete = function(id, nmUsuario, dsEmail, ieAdministrador) {
+
+
+        var postObject = new Object();
+        postObject.id = id;
+        postObject.nmUsuario = nmUsuario;
+        postObject.dsEmail = dsEmail;
+        postObject.ieAdministrador = ieAdministrador
+
+
+        $http({
+            url: URL_DELETE + JSON.stringify(postObject),
+            dataType: 'json',
+            method: 'DELETE',
+            headers: {
+                "Content-Type": "application/json",
+                'Accept': 'application/json'
+            }
+        }).success(function(response) {
+            $scope.msg = "Documento inserido com sucesso";
+            $scope.response = response;
+            location.reload();
+        }).error(function(error) {
+            $scope.msg = "Service not Exists";
+            $scope.error = error;
+        });
+    };
+
+    $scope.load = function(RowEditor) {
+
+        var id = RowEditor.entity.id;
+        var nmUsuario = RowEditor.entity.nmUsuario;
+        var dsEmail = RowEditor.entity.dsEmail;
+        var ieAdministrador = RowEditor.entity.ieAdministrador;
+        $scope.delete(id, nmUsuario, dsEmail, ieAdministrador);
+
+    };
+
+    $scope.open = function() {
+        $scope.showModal = true;
+    };
+
+    $scope.ok = function() {
+        $scope.showModal = false;
+    };
+
+    $scope.cancel = function() {
+        $scope.showModal = false;
     };
 });
 
@@ -58,7 +143,7 @@ function MainCtrl($http, RowEditor) {
 
     vm.gridOptions = {
         columnDefs: [
-            {field: 'id', name: '', cellTemplate: 'edit-button.html', width: 34},
+            {field: 'id', name: '', cellTemplate: 'edit-button.html', width: 60},
             {name: 'Usuario', field: 'nmUsuario'},
             {name: 'Email', field: 'dsEmail'},
             {name: 'Administrador', field: 'ieAdministrador'},
@@ -66,7 +151,7 @@ function MainCtrl($http, RowEditor) {
     };
 
     $http.get(URL_TODOS)
-            .success(function (data) {
+            .success(function(data) {
                 vm.gridOptions.data = data;
             });
 }
@@ -82,10 +167,10 @@ function RowEditor($rootScope, $modal) {
             controller: ['$modalInstance', 'PersonSchema', 'grid', 'row', RowEditCtrl],
             controllerAs: 'vm',
             resolve: {
-                grid: function () {
+                grid: function() {
                     return grid;
                 },
-                row: function () {
+                row: function() {
                     return row;
                 }
             }
@@ -101,6 +186,7 @@ function RowEditCtrl($modalInstance, PersonSchema, grid, row) {
     vm.schema = PersonSchema;
     vm.entity = angular.copy(row.entity);
     vm.form = [
+        'id',
         'nmUsuario',
         'dsEmail',
         'ieAdministrador'

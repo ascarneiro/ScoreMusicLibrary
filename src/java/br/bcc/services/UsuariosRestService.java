@@ -135,7 +135,7 @@ public class UsuariosRestService
             Usuario usuario = gson.fromJson(json, Usuario.class);
             DAO dao = DaoFactory.getUser();
             ValueByName restricao = new ValueByName();
-            restricao.put("NR_SEQUENCIA", usuario.getId());
+            restricao.put("NR_SEQUENCIA", (usuario.getDsEmail() + usuario.getNmUsuario()).hashCode());
 
             ValueByName update = new ValueByName();
             update.put("NR_SEQUENCIA", (usuario.getDsEmail() + usuario.getNmUsuario()).hashCode());
@@ -153,16 +153,20 @@ public class UsuariosRestService
     }
 
     @DELETE
-    @Path("/delete/{id}")
+    @Path("/delete/{json}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void remove(@PathParam("id") int id
+    public void remove(@PathParam("json") String json
     )
     {
         try
         {
+
+            Gson gson = new Gson();
+            Usuario usuario = gson.fromJson(json, Usuario.class);
+            
             DAO dao = DaoFactory.getUser();
             ValueByName p = new ValueByName();
-            p.put("NR_SEQUENCIA", id);
+            p.put("NR_SEQUENCIA", (usuario.getDsEmail() + usuario.getNmUsuario()).hashCode());
             dao.delete("USUARIO", p);
 
         } catch (Exception e)

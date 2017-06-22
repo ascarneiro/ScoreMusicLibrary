@@ -11,7 +11,9 @@ import br.bcc.dao.DAO;
 import br.bcc.model.Documento;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
@@ -39,7 +41,7 @@ public class DocumentoRestService
             {
                 Documento doc = new Documento(linha.getAsString("NR_SEQUENCIA"));
                 doc.setAutor(linha.getAsString("DS_AUTOR"));
-                doc.setDsCaminhoArquivo(linha.getAsString("DS_CAMINHO_ARQUIVO"));
+                doc.setDsCaminhoArquivoPDF(linha.getAsString("DS_CAMINHO_ARQUIVO"));
                 doc.setLivro(linha.getAsString("DS_LIVRO"));
                 doc.setInstrumento(linha.getAsString("DS_INSTRUMENTO"));
                 documentos.add(doc);
@@ -73,7 +75,7 @@ public class DocumentoRestService
             //
             Documento doc = new Documento(linhas.get(0).getAsString("NR_SEQUENCIA"));
             doc.setAutor(linhas.get(0).getAsString("DS_AUTOR"));
-            doc.setDsCaminhoArquivo(linhas.get(0).getAsString("DS_CAMINHO_ARQUIVO"));
+            doc.setDsCaminhoArquivoPDF(linhas.get(0).getAsString("DS_CAMINHO_ARQUIVO"));
             doc.setLivro(linhas.get(0).getAsString("DS_LIVRO"));
             doc.setInstrumento(linhas.get(0).getAsString("NR_SEQ_INSTRUMENTO"));
             Gson gson = new GsonBuilder().setPrettyPrinting().create();
@@ -95,15 +97,40 @@ public class DocumentoRestService
         Documento doc = gson.fromJson(json, Documento.class);
         DAO dao = DaoFactory.getUser();
         ValueByName p = new ValueByName();
-        p.put("NR_SEQUENCIA", (doc.getAutor() + doc.getInstrumento() + doc.getLivro()).hashCode());
+        int idDoc = (doc.getObra() + doc.getAutor() + doc.getLivro() + doc.getInstrumento()).hashCode();
+        p.put("NR_SEQUENCIA", idDoc);
         p.put("DS_AUTOR", doc.getAutor());
         p.put("DS_LIVRO", doc.getLivro());
+        p.put("DS_OBRA", doc.getObra());
         p.put("DS_INSTRUMENTO", doc.getInstrumento());
         p.put("DS_CAMINHO_ARQUIVO", doc.getDsCaminhoArquivo());
         try
         {
             dao.insert("DOCUMENTO", p);
 
+            //Representar PDF
+            p.clear();
+            int nrSeqMidiaPDF = (doc.getDsCaminhoArquivo() + "PDF").hashCode();
+            p.put("NR_SEQUENCIA", nrSeqMidiaPDF);
+            p.put("DS_CAMINHO", "c:/file.pdf");
+            dao.insert("MIDIA", p);
+
+            //Representar MIDI
+            p.clear();
+            int nrSeqMidiaMIDI = (doc.getDsCaminhoArquivo() + "MIDI").hashCode();
+            p.put("NR_SEQUENCIA", nrSeqMidiaMIDI);
+            p.put("DS_CAMINHO", "c:/file.midi");
+            dao.insert("MIDIA", p);
+
+            //Cria como processado
+            p.clear();
+            p.put("NR_SEQUENCIA", idDoc); //same code right
+            p.put("NR_SEQ_DOCUMENTO", idDoc);
+            p.put("NR_SEQ_MIDIA_PDF", nrSeqMidiaPDF);
+            p.put("NR_SEQ_MIDIA_MIDI", nrSeqMidiaMIDI);
+            p.put("NM_USUARIO", doc.getAutor());
+            p.put("DT_ATUALIZACAO", new SimpleDateFormat("dd/MM/yyyy hh mm ss").format(new Date()));
+            dao.insert("DOCUMENTO_PROCESSO", p);
             return gson.toJson(doc);
         } catch (Exception e)
         {
@@ -144,16 +171,18 @@ public class DocumentoRestService
     }
 
     @DELETE
-    @Path("/delete/{id}")
+    @Path("/delete/{json}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void remove(@PathParam("id") int id
+    public void remove(@PathParam("json") String json
     )
     {
         try
         {
+            Gson gson = new Gson();
+            Documento doc = gson.fromJson(json, Documento.class);
             DAO dao = DaoFactory.getUser();
             ValueByName p = new ValueByName();
-            p.put("NR_SEQUENCIA", id);
+            p.put("NR_SEQUENCIA", doc.getId());
             dao.delete("DOCUMENTO", p);
 
         } catch (Exception e)

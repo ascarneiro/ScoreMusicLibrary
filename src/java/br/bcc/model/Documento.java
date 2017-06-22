@@ -13,12 +13,29 @@ public class Documento
 {
 
     private String id;
+    private String obra;
     private String autor;
     private String instrumento;
     private String livro;
-    private String dsCaminhoArquivo;
+    private String dsCaminhoArquivoPDF;
+    private String dsCaminhoArquivoMIDI;
 
     public Documento(String id)
+    {
+        this.id = id;
+    }
+
+    public String getObra()
+    {
+        return obra;
+    }
+
+    public void setObra(String obra)
+    {
+        this.obra = obra;
+    }
+
+    public void setId(String id)
     {
         this.id = id;
     }
@@ -60,12 +77,22 @@ public class Documento
 
     public String getDsCaminhoArquivo()
     {
-        return dsCaminhoArquivo;
+        return dsCaminhoArquivoPDF;
     }
 
-    public void setDsCaminhoArquivo(String dsCaminhoArquivo)
+    public void setDsCaminhoArquivoPDF(String dsCaminhoArquivo)
     {
-        this.dsCaminhoArquivo = dsCaminhoArquivo;
+        this.dsCaminhoArquivoPDF = dsCaminhoArquivo;
+    }
+
+    public void setDsCaminhoArquivoMIDI(String dsCaminhoArquivoMIDI)
+    {
+        this.dsCaminhoArquivoMIDI = dsCaminhoArquivoMIDI;
+    }
+
+    public String getDsCaminhoArquivoMIDI()
+    {
+        return dsCaminhoArquivoMIDI;
     }
 
     @Override

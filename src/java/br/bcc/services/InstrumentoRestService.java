@@ -100,9 +100,9 @@ public class InstrumentoRestService
         Instrumento instrumento = gson.fromJson(json, Instrumento.class);
         DAO dao = DaoFactory.getUser();
         ValueByName p = new ValueByName();
-        p.put("NR_SEQUENCIA", (instrumento.getDsInstrumento()+ instrumento.getDsFamilia()).hashCode());
-        p.put("NM_USUARIO", instrumento.getDsInstrumento());
-        p.put("DS_EMAIL", instrumento.getDsFamilia());
+        p.put("NR_SEQUENCIA", (instrumento.getDsInstrumento() + instrumento.getDsFamilia()).hashCode());
+        p.put("DS_INSTRUMENTO", instrumento.getDsInstrumento());
+        p.put("DS_FAMILIA", instrumento.getDsFamilia());
         try
         {
             dao.insert("INSTRUMENTO", p);
@@ -125,6 +125,7 @@ public class InstrumentoRestService
     {
         try
         {
+
             Gson gson = new Gson();
             Instrumento instrumento = gson.fromJson(json, Instrumento.class);
             DAO dao = DaoFactory.getUser();
@@ -132,10 +133,10 @@ public class InstrumentoRestService
             restricao.put("NR_SEQUENCIA", instrumento.getId());
 
             ValueByName update = new ValueByName();
-            update.put("NR_SEQUENCIA", (instrumento.getDsInstrumento()+ instrumento.getDsFamilia()).hashCode());
+            update.put("NR_SEQUENCIA", (instrumento.getDsInstrumento() + instrumento.getDsFamilia()).hashCode());
             update.put("DS_INSTRUMENTO", instrumento.getDsInstrumento());
             update.put("DS_FAMILIA", instrumento.getDsFamilia());
-            
+
             dao.update("INSTRUMENTO", update, restricao);
 
             return json;
@@ -146,16 +147,19 @@ public class InstrumentoRestService
     }
 
     @DELETE
-    @Path("/delete/{id}")
+    @Path("/delete/{json}")
     @Produces(MediaType.APPLICATION_JSON)
-    public void remove(@PathParam("id") int id
+    public void remove(@PathParam("json") String json
     )
     {
         try
         {
+
+            Gson gson = new Gson();
+            Instrumento instrumento = gson.fromJson(json, Instrumento.class);
             DAO dao = DaoFactory.getUser();
             ValueByName p = new ValueByName();
-            p.put("NR_SEQUENCIA", id);
+            p.put("NR_SEQUENCIA", instrumento.getId());
             dao.delete("INSTRUMENTO", p);
 
         } catch (Exception e)

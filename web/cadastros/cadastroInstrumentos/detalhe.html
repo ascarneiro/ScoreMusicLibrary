@@ -1,0 +1,48 @@
+<div ng-app="modal.editing.instrumentos" ng-controller="putServiceCtrl" >
+
+    <button class="btn" ng-click="open()">Open Modal</button>
+
+    <div modal="showModal" close="cancel()" class="centerUpload">
+        <div class="modal-header">
+            <h4>Editar Instrumentos</h4>
+        </div>
+        <div ng-controller="putServiceCtrl" class="cadastro">
+            <form novalidate="novalidate" class="form-horizontal">
+                <table >
+
+                    <tr>
+                        <td>Instrumento:</td>
+                        <td><input style="margin-bottom: 1%; width: 250%" type="text" ng-model="dsInstrumento"></td>
+
+                    </tr>
+
+                    <tr>
+                        <td>Familia:</td>
+                        <td>
+                            <select style="margin-bottom: 1%; width: 100%" ng-model="dsFamilia">
+                                <option value="indefinido">Indefinida
+                                <option value="Cordas">Cordas
+                                <option value="Metais">Metais
+                                <option value="Madeiras">Madeiras
+                                <option value="Palhetas">Palhetas
+                            </select></td>
+                    </tr>
+
+                    <tr><td><div style="height: 8px"></div></td></tr>
+                    <tr>
+                        <td colspan="2"><div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button style="background: black" ng-click="create(dsInstrumento, dsFamilia)" class="btn btn-small  button btn-primary">Salvar</button >
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-small  button btn-primary" ng-click="ok()">Salvar</button>
+            <button class="btn btn-small  button btn-primary" ng-click="cancel()">Editar</button>
+        </div>
+    </div>
+
+</div>

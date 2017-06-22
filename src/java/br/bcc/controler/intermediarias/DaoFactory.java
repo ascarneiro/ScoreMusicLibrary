@@ -15,7 +15,7 @@ import br.bcc.dao.DAO;
 public class DaoFactory {
 
     public static DAO getUser() {
-        User user = new User("imagetopdf", "imagetopdf");
+        User user = new User("root", "root");
         return new DAO(user);
     }
 }

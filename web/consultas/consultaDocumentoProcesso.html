@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="">
     <head>
         <script data-require="angular.js@1.3.15" data-semver="1.3.15" src="https://code.angularjs.org/1.3.15/angular.js"></script>
 
@@ -28,10 +28,11 @@
 
 
     </head>
-    <body class="center" ng-app="">
+    <body class="centerUpload" style="width: 50%">
         <div ng-include src="'../menu/menu.htm'"></div>
+        <iframe id="invisible" style="display:none; border:1px solid #666CCC" title="PDF" src="" frameborder="1" scrolling="auto" height="1100" width="850" ></iframe>
 
-        <div id="jsGrid">
+        <div class="gridp" id="jsGrid" style="width: 10%">
             <input type='file' id='file' name='file'  style="display:none"/>
             <script>
                 $(function () {
@@ -67,13 +68,15 @@
                             {name: "instrumento", type: "text", width: 100},
                             {name: "livro", type: "text", width: 100},
                             {name: "usuario", type: "text", width: 90},
-                            {name: "Download", with : 100,
+                            {name: "midias", with : 100,
                                 itemTemplate: function (value, item) {
                                     var $result = jsGrid.fields.control.prototype.itemTemplate.apply(this, arguments);
                                     var $customButton = $("<img src='download.png'/>")
                                             .width(30)
                                             .click(function (e) {
                                                 jQuery('#file').trigger('click');
+                                                var iframe = document.getElementById('invisible');
+                                                iframe.src = '../files/score.pdf';
                                             });
                                     return $result.add($customButton);
                                 }}
@@ -82,7 +85,8 @@
 
                 });
             </script><br>
-        </div>      
+        </div>
+
     </body>
 </html>
 
